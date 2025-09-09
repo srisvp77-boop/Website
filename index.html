@@ -337,30 +337,42 @@
             let result = "";
 
             // Crores
-            if (Math.floor(num / 10000000) > 0) {
-                result += inWords(Math.floor(num / 10000000)) + " Crore ";
+            let crore = Math.floor(num / 10000000);
+            if (crore > 0) {
+                result += inWords(crore) + " Crore" + (crore > 1 ? "s " : " ");
                 num %= 10000000;
             }
 
             // Lakhs
-            if (Math.floor(num / 100000) > 0) {
-                result += inWords(Math.floor(num / 100000)) + " Lakh ";
+            let lakh = Math.floor(num / 100000);
+            if (lakh > 0) {
+                result += inWords(lakh) + " Lakh" + (lakh > 1 ? "s " : " ");
                 num %= 100000;
             }
 
             // Thousands
-            if (Math.floor(num / 1000) > 0) {
-                result += inWords(Math.floor(num / 1000)) + " Thousand ";
+            let thousand = Math.floor(num / 1000);
+            if (thousand > 0) {
+                result += inWords(thousand) + " Thousand" + (thousand > 1 ? "s " : " ");
                 num %= 1000;
             }
 
-            // Hundreds & below
+            // Hundreds
+            let hundred = Math.floor(num / 100);
+            if (hundred > 0) {
+                result += inWords(hundred) + " Hundred" + (hundred > 1 ? "s " : " ");
+                num %= 100;
+            }
+
+            // Below hundred
             if (num > 0) {
-                result += inWords(num);
+                result += inWords(num) + " ";
             }
 
             return result.trim();
         }
+
+
 
 
         function formatDate(dateStr) {
